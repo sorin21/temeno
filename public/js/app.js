@@ -67,7 +67,7 @@ window.addEventListener("load", function() {
 			url: "register",
 			type: "post",
 			data: {
-				"email": "sydney@fife",
+				"email": "eve.holt@reqres.in",
 				"password": "pistol"
 			}
 		},
@@ -82,7 +82,7 @@ window.addEventListener("load", function() {
 			url: "login",
 			type: "post",
 			data: {
-				"email": "peter@klaven",
+				"email": "eve.holt@reqres.in",
 				"password": "cityslicka"
 			}
 		},

@@ -49,9 +49,19 @@ module.exports = {
 	login: function(req, res, next) {
 		if (req.body.username || req.body.email) {
 			if (req.body.password) {
-				return res.status(200).send({
-					token: config.token
-				});
+				const user = data.users.find( usersearch => usersearch.email === req.body.email );
+				if (user) {
+					const token = data.tokens.find( token => token.id === user.id );
+					if (token) {
+						return res.status(200).send({
+							token: token.token
+						});
+					}
+				} else {
+					return res.status(400).send({
+						error: "user not found"
+					});
+				}
 			} else {
 				return res.status(400).send({
 					error: "Missing password"
@@ -67,9 +77,20 @@ module.exports = {
 	register: function(req, res, next) {
 		if (req.body.username || req.body.email) {
 			if (req.body.password) {
-				return res.status(201).send({
-					token: config.token
-				});
+				const user = data.users.find( usersearch => usersearch.email === req.body.email );
+				if (user) {
+					const token = data.tokens.find( token => token.id === user.id );
+					if (token) {
+						return res.status(200).send({
+							id: user.id,
+							token: token.token
+						});
+					}
+				} else {
+					return res.status(400).send({
+						error: "Note: Only defined users succeed registration"
+					});
+				}
 			} else {
 				return res.status(400).send({
 					error: "Missing password"
