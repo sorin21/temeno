@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Pagination from "react-js-pagination";
-// require("bootstrap/less/bootstrap.less");
 
 import Spinner from '../common/Spinner'
 import { getProfiles } from '../../actions/profileActions'
@@ -10,18 +8,10 @@ import { getProfiles } from '../../actions/profileActions'
 import Profile from './Profile'
 
 class Profiles extends Component {
-  state = {
-    activePage: this.props.profiles ? this.props.profiles.page : null
-  };
-
   componentDidMount() {
     this.props.onGetProfiles();
   }
 
-  handlePageChange = (pageNumber) => {
-    console.log(`active page is ${pageNumber}`);
-    this.setState({ activePage: pageNumber });
-  }
   render() {
     const { profiles, loading } = this.props;
     let profileItems;
@@ -38,7 +28,6 @@ class Profiles extends Component {
       }
     }
 
-    console.log('this.props', this.props)
     return (
       <div className="profiles">
         <div className="container">
@@ -52,13 +41,6 @@ class Profiles extends Component {
             </div>
           </div>
         </div>
-        <Pagination
-          activePage={this.state.activePage}
-          itemsCountPerPage={3}
-          totalItemsCount={12}
-          pageRangeDisplayed={3}
-          onChange={this.handlePageChange}
-        />
       </div>
     );
   }
