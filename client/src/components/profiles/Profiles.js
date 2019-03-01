@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import Spinner from '../common/Spinner'
 import { getProfiles } from '../../actions/profileActions'
+import Pagination from '../common/Pagination';
 
 import Profile from './Profile'
 
@@ -15,6 +16,11 @@ class Profiles extends Component {
   render() {
     const { profiles, loading } = this.props;
     let profileItems;
+    const page = profiles ? profiles.page : null;
+    const per_page = profiles ? profiles.per_page : null;
+    const total = profiles ? profiles.total : null;
+    const total_pages = profiles ? profiles.total_pages : null;
+    const users = profiles ? profiles.data : null;
 
     if (profiles === null || loading === true) {
       profileItems = <Spinner />;
@@ -41,6 +47,7 @@ class Profiles extends Component {
             </div>
           </div>
         </div>
+        {/* {<Pagination users={users} currentPage={page} perPage={per_page} />} */}
       </div>
     );
   }
